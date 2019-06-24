@@ -1,14 +1,13 @@
 const dataUrlToBlob = fileStream => {
-  // 将 base64 转为 blob
   const bytes = window.atob(fileStream) // base64 解码
-  const ab = new ArrayBuffer(bytes.length)  // 创建缓冲数组
-  const ia = new Uint8Array(ab) // 创建视图
+  const bufferArray = new ArrayBuffer(bytes.length)  // 创建缓冲数组
+  const streamView = new Uint8Array(bufferArray) // 创建视图
 
   for (let i = 0; i < bytes.length; i ++) {
-    ia[i] = bytes[i].charCodeAt()
+    streamView[i] = bytes[i].charCodeAt()
   }
 
-  return ia
+  return streamView
 }
 
 const imitationClickDown = () => {

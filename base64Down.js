@@ -1,4 +1,4 @@
-const dataUrlToBlob = () => {
+const dataUrlToBlob = fileStream => {
   // 将 base64 转为 blob
   const bytes = window.atob(fileStream) // base64 解码
   const ab = new ArrayBuffer(bytes.length)  // 创建缓冲数组
@@ -12,7 +12,7 @@ const dataUrlToBlob = () => {
 }
 
 const imitationClickDown = () => {
-  const blob = new Blob([dataUrlToBlob(fileStream)], { type: 'application/pdf' })
+  const blob = new Blob([dataUrlToBlob(fileStream)], { type: mime })
   const a = document.createElement('a')
   a.download = fileName
   a.href = URL.createObjectURL(blob)
